@@ -20,7 +20,7 @@ const erc20Token = new foreignWeb3.eth.Contract(ERC677_BRIDGE_TOKEN_ABI, ercToEr
 const foreignBridge = new foreignWeb3.eth.Contract(FOREIGN_ERC_TO_NATIVE_ABI, COMMON_FOREIGN_BRIDGE_ADDRESS)
 const erc677Token = new homeWeb3.eth.Contract(ERC677_BRIDGE_TOKEN_ABI, ercToErcBridge.homeToken)
 
-describe('erc to erc', () => {
+describe('ERC TO ERC', () => {
   it('should convert tokens in foreign to tokens in home', async () => {
     const balance = await erc20Token.methods.balanceOf(user.address).call()
     assert(!toBN(balance).isZero(), 'Account should have tokens')

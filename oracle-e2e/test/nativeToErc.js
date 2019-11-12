@@ -30,7 +30,7 @@ const token = new foreignWeb3.eth.Contract(ERC677_BRIDGE_TOKEN_ABI, nativeToErcB
 
 const sleep = timeout => new Promise(res => setTimeout(res, timeout))
 
-describe('native to erc', () => {
+describe('NATIVE TO ERC', () => {
   it('should convert eth in home to tokens in foreign', async () => {
     // check that account has zero tokens in the foreign chain
     const balance = await token.methods.balanceOf(user.address).call()

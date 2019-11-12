@@ -19,7 +19,7 @@ foreignWeb3.eth.accounts.wallet.add(user.privateKey)
 const erc20Token = new foreignWeb3.eth.Contract(ERC677_BRIDGE_TOKEN_ABI, ercToNativeBridge.foreignToken)
 const foreignBridge = new foreignWeb3.eth.Contract(FOREIGN_ERC_TO_NATIVE_ABI, COMMON_FOREIGN_BRIDGE_ADDRESS)
 
-describe('erc to native', () => {
+describe('ERC TO NATIVE', () => {
   it('should convert tokens in foreign to coins in home', async () => {
     const balance = await erc20Token.methods.balanceOf(user.address).call()
     const originalBalanceOnHome = await homeWeb3.eth.getBalance(user.address)
