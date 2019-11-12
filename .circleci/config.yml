@@ -244,7 +244,7 @@ jobs:
             cd ui-e2e; yarn mocha -g "<< parameters.ui-e2e-grep >>" -b ./test.js
       - run:
           name: Run the oracle-e2e tests
-          command: docker-compose run e2e cd oracle-e2e; yarn mocha -g "<< parameters.ui-e2e-grep >>" -b
+          command: cd e2e-commons; docker-compose run e2e 'cd oracle-e2e; yarn mocha -g "<< parameters.ui-e2e-grep >>" -b'
 workflows:
   tokenbridge:
     jobs:
