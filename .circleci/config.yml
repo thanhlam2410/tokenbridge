@@ -243,7 +243,7 @@ jobs:
             node ./e2e-commons/scripts/blocks.js &
             cd ui-e2e; yarn mocha -g "<< parameters.ui-e2e-grep >>" -b ./test.js
       - restore_cache:
-          key: initialize-{{ .Environment.CIRCLE_SHA1 }}
+          key: contracts-{{ checksum "submodule.status" }}
       - run:
           name: Run the oracle-e2e tests
           command: |
