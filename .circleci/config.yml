@@ -242,12 +242,9 @@ jobs:
             nvm use default;
             node ./e2e-commons/scripts/blocks.js &
             cd ui-e2e; yarn mocha -g "<< parameters.ui-e2e-grep >>" -b ./test.js
-      - run: test -d contracts/build/contracts || yarn compile:contracts
       - run:
           name: Run the oracle-e2e tests
-          command: |
-            nvm use default;
-            cd oracle-e2e; yarn mocha -g "<< parameters.ui-e2e-grep >>" -b
+          command: docker-compose run e2e cd oracle-e2e; yarn mocha -g "<< parameters.ui-e2e-grep >>" -b
 workflows:
   tokenbridge:
     jobs:
