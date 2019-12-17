@@ -223,6 +223,9 @@ jobs:
       ui-e2e-grep:
         description: "Mocha grep string used to run ui-e2e tests specific to given type of bridge"
         type: string
+      oracle-e2e-script:
+        description: "Yarn script string used to run oracle-e2e tests specific to given type of bridge"
+        type: string
     steps:
       - checkout
       - run: git submodule update --init
@@ -236,12 +239,21 @@ jobs:
           no_output_timeout: 50m
       - tokenbridge-orb/wait-for-oracle:
           redis-key: << parameters.redis-key >>
-      - run:
-          name: Run the ui-e2e tests
-          command: |
-            nvm use default;
-            node ./e2e-commons/scripts/blocks.js &
-            cd ui-e2e; yarn mocha -g "<< parameters.ui-e2e-grep >>" -b ./test.js
+      - when:
+          condition: << parameters.ui-e2e-grep >>
+          steps:
+            - run:
+                name: Run the ui-e2e tests
+                command: |
+                  nvm use default;
+                  node ./e2e-commons/scripts/blocks.js &
+                  cd ui-e2e; yarn mocha -g "<< parameters.ui-e2e-grep >>" -b ./test.js
+      - when:
+          condition: << parameters.oracle-e2e-script >>
+          steps:
+            - run:
+                name: Run the oracle-e2e tests
+                command: cd e2e-commons && docker-compose run e2e yarn workspace oracle-e2e run << parameters.oracle-e2e-script >>
 workflows:
   tokenbridge:
     jobs:
@@ -287,3 +299,8 @@ workflows:
           scenario-name: erc-to-erc
           redis-key: erc-erc-collected-signatures:lastProcessedBlock
           ui-e2e-grep: "ERC TO ERC"
+      - ultimate:
+          name: "ultimate: amb"
+          scenario-name: amb
+          redis-key: amb-collected-signatures:lastProcessedBlock
+          oracle-e2e-script: "amb"
