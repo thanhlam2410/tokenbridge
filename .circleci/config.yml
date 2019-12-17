@@ -222,9 +222,11 @@ jobs:
         type: string
       ui-e2e-grep:
         description: "Mocha grep string used to run ui-e2e tests specific to given type of bridge"
+        default: ''
         type: string
       oracle-e2e-script:
         description: "Yarn script string used to run oracle-e2e tests specific to given type of bridge"
+        default: ''
         type: string
     steps:
       - checkout
