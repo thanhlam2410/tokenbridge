@@ -30,7 +30,7 @@ verifier:
   lint:
     name: flake8
 scenario:
-  name: ultimate-erc-to-erc
+  name: ultimate-amb
   test_sequence:
     - cleanup
     - destroy
