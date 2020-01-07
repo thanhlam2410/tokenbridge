@@ -27,6 +27,7 @@
   shell: rm {{ item }}
   delegate_to: 127.0.0.1
   become: false
+  ignore_errors: True
   args:
     chdir: "{{ lookup('env', 'PWD') }}/.."
   with_items:
