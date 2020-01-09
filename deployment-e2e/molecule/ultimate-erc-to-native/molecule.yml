@@ -13,28 +13,6 @@ platforms:
     network_mode: host
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-  - name: oracle-erc-to-native-host-2
-    groups:
-      - ultimate
-      - erc-to-native
-    children:
-      - oracle
-    image: ubuntu:16.04
-    privileged: true
-    network_mode: host
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-  - name: oracle-erc-to-native-host-3
-    groups:
-      - ultimate
-      - erc-to-native
-    children:
-      - oracle
-    image: ubuntu:16.04
-    privileged: true
-    network_mode: host
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
   - name: ui-erc-to-native-host
     groups:
       - ultimate
@@ -58,20 +36,6 @@ provisioner:
         COMMON_FOREIGN_RPC_URL: "http://parity2:8545"
         ORACLE_VALIDATOR_ADDRESS: "0xaaB52d66283F7A1D5978bcFcB55721ACB467384b"
         ORACLE_VALIDATOR_ADDRESS_PRIVATE_KEY: "8e829f695aed89a154550f30262f1529582cc49dc30eff74a6b491359e0230f9"
-        ORACLE_HOME_START_BLOCK: 1
-        ORACLE_FOREIGN_START_BLOCK: 1
-      oracle-erc-to-native-host-2:
-        COMMON_HOME_RPC_URL: "http://parity1:8545"
-        COMMON_FOREIGN_RPC_URL: "http://parity2:8545"
-        ORACLE_VALIDATOR_ADDRESS: "0xdCC784657C78054aa61FbcFFd2605F32374816A4"
-        ORACLE_VALIDATOR_ADDRESS_PRIVATE_KEY: "5a5c3645d0f04e9eb4f27f94ed4c244a225587405b8838e7456f7781ce3a9513"
-        ORACLE_HOME_START_BLOCK: 1
-        ORACLE_FOREIGN_START_BLOCK: 1
-      oracle-erc-to-native-host-3:
-        COMMON_HOME_RPC_URL: "http://parity1:8545"
-        COMMON_FOREIGN_RPC_URL: "http://parity2:8545"
-        ORACLE_VALIDATOR_ADDRESS: "0xDcef88209a20D52165230104B245803C3269454d"
-        ORACLE_VALIDATOR_ADDRESS_PRIVATE_KEY: "f877f62a1c19f852cff1d29f0fb1ecac18821c0080d4cc0520c60c098293dca1"
         ORACLE_HOME_START_BLOCK: 1
         ORACLE_FOREIGN_START_BLOCK: 1
       ui-erc-to-native-host:
